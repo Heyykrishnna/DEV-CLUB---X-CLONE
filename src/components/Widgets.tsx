@@ -38,7 +38,6 @@ const NewsItem = ({ title, time, source, img }: { title: string, time: string, s
 export default function Widgets() {
   return (
     <div className="hidden lg:block w-[350px] pl-8 py-1 min-h-screen">
-      {/* Search Bar - Sticky */}
       <div className="sticky top-0 bg-[var(--color-black)] z-10 py-1 mb-2">
         <div className="bg-[var(--color-dim-gray)] rounded-full flex items-center px-4 py-2.5 focus-within:bg-black focus-within:ring-1 focus-within:ring-[var(--color-primary)] group">
           <Search size={20} className="text-[var(--color-gray)] group-focus-within:text-[var(--color-primary)] mr-3" />

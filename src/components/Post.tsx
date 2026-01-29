@@ -30,7 +30,7 @@ const PostAction = ({ icon: Icon, value, color }: { icon: any, value: string, co
     },
     pink: {
       text: 'hover:text-pink-500',
-      bg: 'group-hover:bg-pink-500/10' // Note: 'pink' is a default Tailwind color
+      bg: 'group-hover:bg-pink-500/10'
     }
   };
 
@@ -58,7 +58,6 @@ export default function Post({ id, avatar, name, handle, time, content, image, s
       className="border-b border-[var(--color-border)] p-4 hover:bg-[rgba(255,255,255,0.03)] cursor-pointer transition-colors"
     >
       <div className="flex gap-3">
-        {/* Avatar */}
         <div className="flex-shrink-0" onClick={(e) => e.stopPropagation()}>
           <img 
             src={avatar} 
