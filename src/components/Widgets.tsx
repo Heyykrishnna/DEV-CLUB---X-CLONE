@@ -73,13 +73,13 @@ export default function Widgets() {
             title="Joe Root's Century Sparks Talk of Virat Kohli's Unmatched Record"
             time="18 hours ago"
             source="Sports"
-            img="https://cdn.magicdecor.in/com/2024/02/15132806/Faces-Minimalist-Abstract-Aesthetic-Style-Wallpaper-Mural.jpg"
+            img="https://github.com/shadcn.png"
         />
         <NewsItem 
              title="Ashwin and Kohli Laugh Off Fan's T20 World Cup Critique"
              time="3 hours ago"
              source="Sports"
-             img="https://cdn.magicdecor.in/com/2024/02/15132806/Faces-Minimalist-Abstract-Aesthetic-Style-Wallpaper-Mural.jpg"
+             img="https://github.com/shadcn.png"
         />
         <TrendItem category="Politics · Trending" title="Pradhan" posts="12.5K posts" />
         <TrendItem category="Politics · Trending" title="Yogi" posts="54.2K posts" />

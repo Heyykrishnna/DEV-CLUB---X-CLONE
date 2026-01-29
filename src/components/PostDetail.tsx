@@ -77,7 +77,7 @@ export default function PostDetail() {
         </div>
         <div className="flex gap-3 py-4 border-b border-[var(--color-border)]">
            <img 
-            src="https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png" 
+            src="https://github.com/shadcn.png" 
             alt="My Profile" 
             className="w-10 h-10 rounded-full"
           />

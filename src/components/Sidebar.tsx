@@ -12,7 +12,6 @@ import {
 } from 'lucide-react';
 import Button from './Button';
 
-// Custom X Logo component for the menu
 const XLogo = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-[26px] w-[26px] fill-[var(--color-white)]">
     <g>
@@ -64,7 +63,7 @@ export default function Sidebar() {
       <div className="mt-auto mb-4 flex items-center gap-3 p-3 rounded-full hover:bg-[var(--color-dim-gray)] cursor-pointer transition-colors">
         <div className="w-10 h-10 rounded-full bg-gray-600 flex-shrink-0">
           <img 
-            src="https://cdn.magicdecor.in/com/2024/02/15132806/Faces-Minimalist-Abstract-Aesthetic-Style-Wallpaper-Mural.jpg" 
+            src="https://github.com/shadcn.png" 
             alt="Profile" 
             className="rounded-full w-full h-full"
           />

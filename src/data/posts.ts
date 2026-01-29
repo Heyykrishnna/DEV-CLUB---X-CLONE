@@ -1,7 +1,7 @@
 export const POSTS = [
   {
     id: "1",
-    avatar: "https://cdn.magicdecor.in/com/2024/02/15132806/Faces-Minimalist-Abstract-Aesthetic-Style-Wallpaper-Mural.jpg",
+    avatar: "https://github.com/shadcn.png",
     name: "Mohit Chauhan",
     handle: "@mohitlaws",
     time: "2h",
@@ -10,7 +10,7 @@ export const POSTS = [
   },
   {
     id: "2",
-    avatar: "https://cdn.magicdecor.in/com/2024/02/15132806/Faces-Minimalist-Abstract-Aesthetic-Style-Wallpaper-Mural.jpg",
+    avatar: "https://github.com/shadcn.png",
     name: "realme",
     handle: "@realmeIndia",
     time: "Ad",
@@ -20,7 +20,7 @@ export const POSTS = [
   },
   {
     id: "3",
-      avatar: "https://cdn.magicdecor.in/com/2024/02/15132806/Faces-Minimalist-Abstract-Aesthetic-Style-Wallpaper-Mural.jpg",
+      avatar: "https://github.com/shadcn.png",
       name: "Out Of Context Cricket",
       handle: "@GemsOfCricket",
       time: "3h",
