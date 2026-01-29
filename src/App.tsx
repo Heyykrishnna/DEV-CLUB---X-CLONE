@@ -5,6 +5,7 @@ import PostPage from './pages/PostPage';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import Cookies from './pages/Cookies';
+import { Analytics } from "@vercel/analytics/next"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/terms" element={<Terms />} />
         <Route path="/cookies" element={<Cookies />} />
       </Routes>
+      <Analytics />
     </Router>
   );
 }
