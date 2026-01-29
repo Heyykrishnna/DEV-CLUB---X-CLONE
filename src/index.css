@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Open Sans';
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  --color-black: #000000;
+  --color-dim-gray: #16181c;
+  --color-border: #2f3336;
+  --color-primary: #1d9bf0;
+  --color-primary-hover: #1a8cd8;
+  --color-white: #e7e9ea;
+  --color-gray: #71767b;
+  --color-button-white: #eff3f4;
+  --color-button-white-hover: #d7dbdc;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  overflow-x: hidden;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
