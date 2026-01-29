@@ -40,7 +40,7 @@ export default function PostDetail() {
   ]);
 
   if (!post) {
-    return <div className="p-4 text-center">Post not found</div>;
+    return <div className="p-4 text-center px-64 flex justify-center items-center font-extrabold text-md text-red-800">Post not found</div>;
   }
 
   const parseCount = (str: string) => {
