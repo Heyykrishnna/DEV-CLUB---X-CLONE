@@ -48,14 +48,14 @@ export default function Widgets() {
           />
         </div>
       </div>
-      <div className="bg-[var(--color-dim-gray)] rounded-2xl p-4 mb-4 border border-[var(--color-border)]">
+      <div className="rounded-2xl p-4 mb-4 border border-[var(--color-border)]">
         <h2 className="text-[20px] font-bold mb-2">Subscribe to Premium</h2>
         <p className="text-[15px] mb-3 leading-5">
           Subscribe to unlock new features and if eligible, receive a share of revenue.
         </p>
-        <Button variant="primary" className="font-bold px-6">Subscribe</Button>
+        <Button variant="secondary" className="font-bold px-6">Subscribe</Button>
       </div>
-      <div className="bg-[var(--color-dim-gray)] rounded-2xl overflow-hidden mb-4 border border-[var(--color-border)]">
+      <div className="rounded-2xl overflow-hidden mb-4 border border-[var(--color-border)]">
          <h2 className="text-[20px] font-bold p-4 pb-0">Live on X</h2>
          <div className="p-4 border-b border-[var(--color-border)]">
             <div className="flex items-center gap-2 mb-1">
@@ -66,7 +66,7 @@ export default function Widgets() {
             <p className="font-bold">#LIVE || Watch the top headlines of the hour...</p>
          </div>
       </div>
-      <div className="bg-[var(--color-dim-gray)] rounded-2xl py-3 border border-[var(--color-border)] mb-4">
+      <div className="rounded-2xl py-3 border border-[var(--color-border)] mb-4">
         <h2 className="text-[20px] font-bold px-4 mb-2">Today's News</h2>
         <NewsItem 
             title="Joe Root's Century Sparks Talk of Virat Kohli's Unmatched Record"
@@ -89,9 +89,9 @@ export default function Widgets() {
         </div>
       </div>
        <div className="flex flex-wrap gap-2 text-[13px] text-[var(--color-gray)] px-4">
-        <a href="#" className="hover:underline">Terms of Service</a>
-        <a href="#" className="hover:underline">Privacy Policy</a>
-        <a href="#" className="hover:underline">Cookie Policy</a>
+        <a href="/terms" className="hover:underline">Terms of Service</a>
+        <a href="/privacy" className="hover:underline">Privacy Policy</a>
+        <a href="/cookies" className="hover:underline">Cookie Policy</a>
         <a href="#" className="hover:underline">Accessibility</a>
         <a href="#" className="hover:underline">Ads info</a>
         <a href="#" className="hover:underline">More ...</a>

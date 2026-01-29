@@ -8,7 +8,10 @@ import {
   User, 
   MoreHorizontal,
   SquareTerminal,
-  Users
+  Users,
+  Settings,
+  HelpCircle,
+  Monitor
 } from 'lucide-react';
 import Button from './Button';
 
@@ -20,8 +23,8 @@ const XLogo = () => (
   </svg>
 );
 
-const NavItem = ({ icon: Icon, text, active = false }: { icon: any, text?: string, active?: boolean }) => (
-  <div className={`
+const NavItem = ({ icon: Icon, text, active = false, onClick }: { icon: any, text?: string, active?: boolean, onClick?: () => void }) => (
+  <div onClick={onClick} className={`
     flex items-center gap-4 p-3 pr-8 w-fit rounded-full cursor-pointer transition-colors
     ${active ? 'font-bold' : 'font-normal'}
     hover:bg-[var(--color-dim-gray)]
@@ -31,7 +34,26 @@ const NavItem = ({ icon: Icon, text, active = false }: { icon: any, text?: strin
   </div>
 );
 
+const MoreMenu = () => (
+  <div className="absolute bottom-full left-0 mb-2 w-[220px] bg-black border border-[var(--color-border)] shadow-[0_0_15px_rgba(255,255,255,0.1)] rounded-xl overflow-hidden z-50 flex flex-col py-1">
+    <div className="flex items-center gap-4 px-4 py-3 hover:bg-[var(--color-dim-gray)] cursor-pointer transition-colors">
+      <Settings size={20} />
+      <span className="text-lg font-normal">Settings and privacy</span>
+    </div>
+    <div className="flex items-center gap-4 px-4 py-3 hover:bg-[var(--color-dim-gray)] cursor-pointer transition-colors">
+      <HelpCircle size={20} />
+      <span className="text-lg font-normal">Help Center</span>
+    </div>
+    <div className="flex items-center gap-4 px-4 py-3 hover:bg-[var(--color-dim-gray)] cursor-pointer transition-colors">
+      <Monitor size={20} />
+      <span className="text-lg font-normal">Display</span>
+    </div>
+  </div>
+);
+
 export default function Sidebar() {
+  const [isMoreMenuOpen, setIsMoreMenuOpen] = React.useState(false);
+
   return (
     <div className="flex flex-col h-screen fixed top-0 w-[68px] xl:w-[275px] px-2 overflow-y-auto border-r border-[var(--color-border)]">
       <div className="p-3 w-fit rounded-full hover:bg-[var(--color-dim-gray)] cursor-pointer transition-colors mb-2">
@@ -42,13 +64,27 @@ export default function Sidebar() {
         <NavItem icon={<Home size={26} strokeWidth={2.5} />} text="Home" active />
         <NavItem icon={<Search size={26} />} text="Explore" />
         <NavItem icon={<Bell size={26} />} text="Notifications" />
-        <NavItem icon={<Mail size={26} />} text="Messages" />
-        <NavItem icon={<SquareTerminal size={26} />} text="Grok" />
+        <NavItem icon={<Mail size={26} />} text="Chat" />
+        <NavItem 
+          icon={
+            <svg viewBox="0 0 48 48" className="h-[26px] w-[26px] fill-[var(--color-white)]">
+              <path d="M18.542 30.532l15.956-11.776c.783-.576 1.902-.354 2.274.545 1.962 4.728 1.084 10.411-2.819 14.315-3.903 3.901-9.333 4.756-14.299 2.808l-5.423 2.511c7.778 5.315 17.224 4 23.125-1.903 4.682-4.679 6.131-11.058 4.775-16.812l.011.011c-1.966-8.452.482-11.829 5.501-18.735C47.759 1.332 47.88 1.166 48 1l-6.602 6.599V7.577l-22.86 22.958M15.248 33.392c-5.582-5.329-4.619-13.579.142-18.339 3.521-3.522 9.294-4.958 14.331-2.847l5.412-2.497c-.974-.704-2.224-1.46-3.659-1.994-6.478-2.666-14.238-1.34-19.505 3.922C6.904 16.701 5.31 24.488 8.045 31.133c2.044 4.965-1.307 8.48-4.682 12.023C2.164 44.411.967 45.67 0 47l15.241-13.608"></path>
+            </svg>
+          }
+          text="Grok"
+        />
         <NavItem icon={<Bookmark size={26} />} text="Bookmarks" />
         <NavItem icon={<Users size={26} />} text="Communities" />
         <NavItem icon={<XLogo />} text="Premium" />
         <NavItem icon={<User size={26} />} text="Profile" />
-        <NavItem icon={<MoreHorizontal size={26} />} text="More" />
+        <div className="relative">
+          {isMoreMenuOpen && <MoreMenu />}
+          <NavItem 
+            icon={<MoreHorizontal size={26} />} 
+            text="More" 
+            onClick={() => setIsMoreMenuOpen(!isMoreMenuOpen)}
+          />
+        </div>
       </nav>
 
       <div className="w-full my-4">

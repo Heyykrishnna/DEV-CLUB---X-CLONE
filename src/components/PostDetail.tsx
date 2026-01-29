@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, MessageCircle, Repeat2, Heart, BarChart2, Share, MoreHorizontal } from 'lucide-react';
 import { POSTS } from '../data/posts';
@@ -9,9 +9,79 @@ export default function PostDetail() {
   const navigate = useNavigate();
   const post = POSTS.find(p => p.id === id);
 
+  const [liked, setLiked] = useState(false);
+  const [reposted, setReposted] = useState(false);
+  const [replyText, setReplyText] = useState('');
+  const [replies, setReplies] = useState([
+    {
+       id: 1,
+       name: "Random User",
+       handle: "@random",
+       time: "1h",
+       content: "This is a mock reply to demonstrate the layout. It looks just like the real thing!",
+       avatar: "https://github.com/shadcn.png" 
+    },
+    {
+       id: 2,
+       name: "Another User",
+       handle: "@another",
+       time: "2h",
+       content: "Wow, this is actually working seamlessly.",
+       avatar: "https://github.com/shadcn.png"
+    },
+    {
+       id: 3,
+       name: "Tester",
+       handle: "@tester",
+       time: "3h",
+       content: "The interactivity is great!",
+       avatar: "https://github.com/shadcn.png"
+    }
+  ]);
+
   if (!post) {
     return <div className="p-4 text-center">Post not found</div>;
   }
+
+  const parseCount = (str: string) => {
+    if (str.includes('K') || str.includes('M')) return NaN;
+    return parseInt(str.replace(/,/g, ''), 10);
+  };
+
+  const likesCountBase = parseCount(post.stats.likes);
+  const repostsCountBase = parseCount(post.stats.reposts);
+
+  const displayLikes = isNaN(likesCountBase) ? post.stats.likes : (liked ? likesCountBase + 1 : likesCountBase).toString();
+  const displayReposts = isNaN(repostsCountBase) ? post.stats.reposts : (reposted ? repostsCountBase + 1 : repostsCountBase).toString();
+
+  const handleLike = () => setLiked(!liked);
+  const handleRepost = () => setReposted(!reposted);
+
+  const handleReply = () => {
+    if (!replyText.trim()) return;
+    
+    const newReply = {
+        id: Date.now(),
+        name: "User Name",
+        handle: "@username",
+        time: "Just now",
+        content: replyText,
+        avatar: "https://github.com/shadcn.png"
+    };
+
+    setReplies([newReply, ...replies]);
+    setReplyText('');
+  };
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: `Post by ${post.name}`,
+        text: post.content,
+        url: window.location.href
+      }).catch(console.error);
+    }
+  };
 
   return (
     <div className="flex-1 min-h-screen border-r border-[var(--color-border)] max-w-[600px] w-full">
@@ -61,17 +131,28 @@ export default function PostDetail() {
         <div className="flex items-center justify-between border-b border-[var(--color-border)] py-3 mx-1">
           <div className="flex gap-1 group cursor-pointer text-[var(--color-gray)] hover:text-blue-500 transition-colors">
              <div className="group-hover:bg-blue-500/10 p-2 -m-2 rounded-full"><MessageCircle size={22} /></div>
-             <span className="text-[14px]">213</span>
+             <span className="text-[14px]">{post.stats.comments}</span>
           </div>
-          <div className="flex gap-1 group cursor-pointer text-[var(--color-gray)] hover:text-green-500 transition-colors">
+          <div 
+             className={`flex gap-1 group cursor-pointer transition-colors ${reposted ? 'text-green-500' : 'text-[var(--color-gray)] hover:text-green-500'}`}
+             onClick={handleRepost}
+          >
              <div className="group-hover:bg-green-500/10 p-2 -m-2 rounded-full"><Repeat2 size={22} /></div>
-             <span className="text-[14px]">137</span>
+             <span className="text-[14px]">{displayReposts}</span>
           </div>
-          <div className="flex gap-1 group cursor-pointer text-[var(--color-gray)] hover:text-pink-500 transition-colors">
-             <div className="group-hover:bg-pink-500/10 p-2 -m-2 rounded-full"><Heart size={22} /></div>
-             <span className="text-[14px]">935</span>
+          <div 
+             className={`flex gap-1 group cursor-pointer transition-colors ${liked ? 'text-pink-500' : 'text-[var(--color-gray)] hover:text-pink-500'}`}
+             onClick={handleLike}
+          >
+             <div className="group-hover:bg-pink-500/10 p-2 -m-2 rounded-full">
+                <Heart size={22} className={liked ? 'fill-pink-500' : ''} />
+             </div>
+             <span className="text-[14px]">{displayLikes}</span>
           </div>
-           <div className="flex gap-1 group cursor-pointer text-[var(--color-gray)] hover:text-blue-500 transition-colors">
+           <div 
+             className="flex gap-1 group cursor-pointer text-[var(--color-gray)] hover:text-blue-500 transition-colors"
+             onClick={handleShare}
+           >
              <div className="group-hover:bg-blue-500/10 p-2 -m-2 rounded-full"><Share size={22} /></div>
           </div>
         </div>
@@ -87,25 +168,40 @@ export default function PostDetail() {
                 placeholder="Post your reply" 
                 className="w-full bg-transparent text-xl placeholder-gray-500 outline-none resize-none min-h-[50px]"
                 rows={2}
+                value={replyText}
+                onChange={(e) => setReplyText(e.target.value)}
               ></textarea>
               <div className="flex justify-between items-center mt-2">
                  <div className="flex gap-2 text-[var(--color-primary)]">
                     <div className="cursor-pointer hover:bg-[rgba(29,155,240,0.1)] p-2 rounded-full"><MessageCircle size={18}/></div>
                  </div>
-                 <Button variant="primary" disabled>Reply</Button>
+                 <Button 
+                   variant="primary" 
+                   disabled={!replyText.trim()}
+                   onClick={handleReply}
+                   className="px-4 py-1.5 font-bold"
+                 >
+                   Reply
+                 </Button>
               </div>
            </div>
         </div>
         <div className="flex flex-col">
-            {[1, 2, 3].map((i) => (
-               <div key={i} className="border-b border-[var(--color-border)] py-3 flex gap-3">
-                   <div className="w-10 h-10 rounded-full bg-gray-700 flex-shrink-0"></div>
+            {replies.map((reply) => (
+               <div key={reply.id} className="border-b border-[var(--color-border)] py-3 flex gap-3">
+                   <div className="flex-shrink-0 cursor-pointer">
+                     <img 
+                       src={reply.avatar} 
+                       alt={reply.name} 
+                       className="w-10 h-10 rounded-full hover:opacity-80 transition-opacity"
+                     />
+                   </div>
                    <div className="flex-1">
                       <div className="flex items-center gap-1 text-[15px] mb-1">
-                         <span className="font-bold">Random User</span>
-                         <span className="text-[var(--color-gray)]">@random · {i}h</span>
+                         <span className="font-bold text-[var(--color-white)] hover:underline cursor-pointer">{reply.name}</span>
+                         <span className="text-[var(--color-gray)]">{reply.handle} · {reply.time}</span>
                       </div>
-                      <p className="text-[15px]">This is a mock reply to demonstrate the layout. It looks just like the real thing!</p>
+                      <p className="text-[15px] text-[var(--color-white)] whitespace-pre-wrap leading-5">{reply.content}</p>
                    </div>
                </div>
             ))}

@@ -39,7 +39,7 @@ export default function AuthPage() {
         </div>
 
         <div className="flex flex-col justify-center p-8 lg:p-16 text-left">
-          <h1 className="text-[40px] lg:text-[64px] font-bold mb-12">
+          <h1 className="text-[44px] lg:text-[64px] font-bold mb-12">
             Happening now
           </h1>
           
@@ -76,8 +76,14 @@ export default function AuthPage() {
               Already have an account?
             </h3>
             
-            <Button variant="outline" className="text-blue-400 border-gray-600 font-bold" fullWidth onClick={() => navigate('/home')}>
+            <Button variant="outline-white" fullWidth onClick={() => navigate('/home')}>
               Sign in
+            </Button>
+            <Button variant="outline-white" fullWidth onClick={() => navigate('/home')}>
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0,0,256,256">
+                <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none"><g transform="scale(5.33333,5.33333)"><path d="M18.542,30.532l15.956,-11.776c0.783,-0.576 1.902,-0.354 2.274,0.545c1.962,4.728 1.084,10.411 -2.819,14.315c-3.903,3.901 -9.333,4.756 -14.299,2.808l-5.423,2.511c7.778,5.315 17.224,4 23.125,-1.903c4.682,-4.679 6.131,-11.058 4.775,-16.812l0.011,0.011c-1.966,-8.452 0.482,-11.829 5.501,-18.735c0.116,-0.164 0.237,-0.33 0.357,-0.496l-6.602,6.599v-0.022l-22.86,22.958M15.248,33.392c-5.582,-5.329 -4.619,-13.579 0.142,-18.339c3.521,-3.522 9.294,-4.958 14.331,-2.847l5.412,-2.497c-0.974,-0.704 -2.224,-1.46 -3.659,-1.994c-6.478,-2.666 -14.238,-1.34 -19.505,3.922c-5.065,5.064 -6.659,12.851 -3.924,19.496c2.044,4.965 -1.307,8.48 -4.682,12.023c-1.199,1.255 -2.396,2.514 -3.363,3.844l15.241,-13.608"></path></g></g>
+                </svg>
+              Grok
             </Button>
           </div>
         </div>
