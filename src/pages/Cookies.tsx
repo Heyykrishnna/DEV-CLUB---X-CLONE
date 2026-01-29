@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function Cookies() {
   return (
     <div className="min-h-screen bg-white text-black flex flex-col px-16 py-10">

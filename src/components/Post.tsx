@@ -76,8 +76,8 @@ export default function Post({ id, avatar, name, handle, time, content, image, s
     return parseInt(str.replace(/,/g, ''), 10);
   };
 
-  const [likesCount, setLikesCount] = useState(() => parseCount(stats.likes));
-  const [repostsCount, setRepostsCount] = useState(() => parseCount(stats.reposts));
+  const [likesCount] = useState(() => parseCount(stats.likes));
+  const [repostsCount] = useState(() => parseCount(stats.reposts));
 
   // Display values
   const displayLikes = isNaN(likesCount) ? stats.likes : (liked ? likesCount + 1 : likesCount).toString();

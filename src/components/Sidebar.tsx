@@ -7,7 +7,6 @@ import {
   Bookmark, 
   User, 
   MoreHorizontal,
-  SquareTerminal,
   Users,
   Settings,
   HelpCircle,

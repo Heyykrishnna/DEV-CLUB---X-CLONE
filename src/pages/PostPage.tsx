@@ -1,4 +1,3 @@
-import React from 'react';
 import Sidebar from '../components/Sidebar';
 import Widgets from '../components/Widgets';
 import PostDetail from '../components/PostDetail';

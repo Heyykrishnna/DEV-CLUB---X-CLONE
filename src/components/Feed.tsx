@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Post from './Post';
 import Button from './Button';
 import { Image, ChartNoAxesColumn, Smile, CalendarClock, MapPin } from 'lucide-react';

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, MessageCircle, Repeat2, Heart, BarChart2, Share, MoreHorizontal } from 'lucide-react';
+import { ArrowLeft, MessageCircle, Repeat2, Heart, Share, MoreHorizontal } from 'lucide-react';
 import { POSTS } from '../data/posts';
 import Button from './Button';
 
