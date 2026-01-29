@@ -63,7 +63,7 @@ export default function Widgets() {
                 <span className="text-[13px] font-bold">IndiaToday</span>
                 <span className="text-[13px] text-gray-500">is hosting</span>
             </div>
-            <p className="font-bold">#LIVE | Delhi rape horror, Stalin's big 'Muslim card'...</p>
+            <p className="font-bold">#LIVE || Watch the top headlines of the hour...</p>
          </div>
       </div>
       <div className="bg-[var(--color-dim-gray)] rounded-2xl py-3 border border-[var(--color-border)] mb-4">
