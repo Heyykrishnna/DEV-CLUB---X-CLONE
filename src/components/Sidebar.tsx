@@ -1,4 +1,5 @@
-import React from 'react';
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { 
   Home, 
   Search, 
@@ -22,16 +23,33 @@ const XLogo = () => (
   </svg>
 );
 
-const NavItem = ({ icon: Icon, text, active = false, onClick }: { icon: any, text?: string, active?: boolean, onClick?: () => void }) => (
-  <div onClick={onClick} className={`
-    flex items-center gap-4 p-3 pr-8 w-fit rounded-full cursor-pointer transition-colors
-    ${active ? 'font-bold' : 'font-normal'}
-    hover:bg-[var(--color-dim-gray)]
-  `}>
-    {Icon}
-    <span className="text-xl hidden xl:block">{text}</span>
-  </div>
-);
+const NavItem = ({ icon: Icon, text, to, onClick }: { icon: any, text?: string, to?: string, onClick?: () => void }) => {
+  const content = (
+    <div className="flex items-center gap-4 p-3 pr-8 w-fit rounded-full cursor-pointer transition-colors hover:bg-[var(--color-dim-gray)]">
+      {Icon}
+      <span className="text-xl hidden xl:block">{text}</span>
+    </div>
+  );
+
+  if (to) {
+    return (
+      <NavLink 
+        to={to} 
+        className={({ isActive }) => 
+          `block w-fit ${isActive ? 'font-bold [&>div>svg]:text-white [&>div>span]:text-white' : 'font-normal text-[var(--color-white)]'}`
+        }
+      >
+        {content}
+      </NavLink>
+    );
+  }
+
+  return (
+    <div onClick={onClick}>
+      {content}
+    </div>
+  );
+};
 
 const MoreMenu = () => (
   <div className="absolute bottom-full left-0 mb-2 w-[220px] bg-black border border-[var(--color-border)] shadow-[0_0_15px_rgba(255,255,255,0.1)] rounded-xl overflow-hidden z-50 flex flex-col py-1">
@@ -51,18 +69,18 @@ const MoreMenu = () => (
 );
 
 export default function Sidebar() {
-  const [isMoreMenuOpen, setIsMoreMenuOpen] = React.useState(false);
+  const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
 
   return (
     <div className="flex flex-col h-screen fixed top-0 w-[68px] xl:w-[275px] px-2 overflow-y-auto border-r border-[var(--color-border)]">
       <div className="p-3 w-fit rounded-full hover:bg-[var(--color-dim-gray)] cursor-pointer transition-colors mb-2">
-        <XLogo />
+        <NavLink to="/home"><XLogo /></NavLink>
       </div>
 
       <nav className="flex flex-col gap-2 mb-4">
-        <NavItem icon={<Home size={26} strokeWidth={2.5} />} text="Home" active />
-        <NavItem icon={<Search size={26} />} text="Explore" />
-        <NavItem icon={<Bell size={26} />} text="Notifications" />
+        <NavItem icon={<Home size={26} strokeWidth={2.5} />} text="Home" to="/home" />
+        <NavItem icon={<Search size={26} />} text="Explore" to="/explore" />
+        <NavItem icon={<Bell size={26} />} text="Notifications" to="/notifications" />
         <NavItem icon={<Mail size={26} />} text="Chat" />
         <NavItem 
           icon={
@@ -75,7 +93,7 @@ export default function Sidebar() {
         <NavItem icon={<Bookmark size={26} />} text="Bookmarks" />
         <NavItem icon={<Users size={26} />} text="Communities" />
         <NavItem icon={<XLogo />} text="Premium" />
-        <NavItem icon={<User size={26} />} text="Profile" />
+        <NavItem icon={<User size={26} />} text="Profile" to="/profile" />
         <div className="relative">
           {isMoreMenuOpen && <MoreMenu />}
           <NavItem 

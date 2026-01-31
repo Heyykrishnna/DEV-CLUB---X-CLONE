@@ -1,5 +1,6 @@
 import { Search, MoreHorizontal } from 'lucide-react';
 import Button from './Button';
+import { useLocation } from 'react-router-dom';
 
 const TrendItem = ({ category, title, posts }: { category: string, title?: string, posts?: string }) => (
   <div className="py-3 px-4 hover:bg-[rgba(255,255,255,0.03)] cursor-pointer transition-colors relative">
@@ -35,18 +36,23 @@ const NewsItem = ({ title, time, source, img }: { title: string, time: string, s
 );
 
 export default function Widgets() {
+  const location = useLocation();
+  const isExplore = location.pathname === '/explore';
+
   return (
     <div className="hidden lg:block w-[350px] pl-8 py-1 min-h-screen">
-      <div className="sticky top-0 bg-[var(--color-black)] z-10 py-1 mb-2">
-        <div className="bg-[var(--color-dim-gray)] rounded-full flex items-center px-4 py-2.5 focus-within:bg-black focus-within:ring-1 focus-within:ring-[var(--color-primary)] group">
-          <Search size={20} className="text-[var(--color-gray)] group-focus-within:text-[var(--color-primary)] mr-3" />
-          <input 
-            type="text" 
-            placeholder="Search" 
-            className="bg-transparent border-none outline-none text-[15px] w-full placeholder-gray-500"
-          />
+      {!isExplore && (
+        <div className="sticky top-0 bg-[var(--color-black)] z-10 py-1 mb-2">
+          <div className="bg-[var(--color-dim-gray)] rounded-full flex items-center px-4 py-2.5 focus-within:bg-black focus-within:ring-1 focus-within:ring-[var(--color-primary)] group">
+            <Search size={20} className="text-[var(--color-gray)] group-focus-within:text-[var(--color-primary)] mr-3" />
+            <input 
+              type="text" 
+              placeholder="Search" 
+              className="bg-transparent border-none outline-none text-[15px] w-full placeholder-gray-500"
+            />
+          </div>
         </div>
-      </div>
+      )}
       <div className="rounded-2xl p-4 mb-4 border border-[var(--color-border)]">
         <h2 className="text-[20px] font-bold mb-2">Subscribe to Premium</h2>
         <p className="text-[15px] mb-3 leading-5">

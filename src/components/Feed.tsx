@@ -26,6 +26,10 @@ export default function Feed() {
     setContent('');
   };
 
+  const visiblePosts = activeTab === 'foryou' 
+    ? posts 
+    : posts.filter((_, i) => i % 2 === 0);
+
   return (
     <div className="flex-1 min-h-screen border-r border-[var(--color-border)] max-w-[600px] w-full">
       <div className="sticky top-0 z-10 bg-[rgba(0,0,0,0.65)] backdrop-blur-md border-b border-[var(--color-border)]">
@@ -88,7 +92,7 @@ export default function Feed() {
         </div>
       </div>
       <div className="pb-60">
-        {posts.map((post) => (
+        {visiblePosts.map((post) => (
           <Post key={post.id} {...post} />
         ))}
       </div>
